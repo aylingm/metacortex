@@ -134,7 +134,13 @@ void clear_list(dBGraph* graph)
     TopItem* current = start;
     TopItem* past = 0;
 
+    char* seq = calloc(256, 1);
+
+		log_printf("HIGH COVERAGE KMERS %s\n", seq);
     while(current != 0) {
+			binary_kmer_to_seq(&(current->ptr->kmer), graph->kmer_size, seq);
+			log_printf("%s\n", seq);
+
       cleaning_prune_db_node(current->ptr, graph);
       past = current;
       current = current->next;
