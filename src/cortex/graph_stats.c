@@ -135,11 +135,14 @@ void clear_list(dBGraph* graph)
     TopItem* past = 0;
     char* seq = calloc(256, 1);
 
-    while(current != 0) {
-      binary_kmer_to_seq(&(current->ptr->kmer), graph->kmer_size, seq);
-      log_printf("%s\n", seq);
+    char* seq = calloc(256, 1);
 
-      cleaning_prune_db_node(current->ptr, graph);
+		log_printf("HIGH COVERAGE KMERS\n";
+    while(current != 0) {
+	binary_kmer_to_seq(&(current->ptr->kmer), graph->kmer_size, seq);
+	log_printf("%s\n", seq);
+      
+	cleaning_prune_db_node(current->ptr, graph);
       past = current;
       current = current->next;
       free(past);
@@ -596,7 +599,11 @@ void find_subgraph_stats(dBGraph * graph, char* consensus_contigs_filename, int 
 
 
       if ((all_edges>2) && (all_edges<=max_node_edges)){
+<<<<<<< HEAD
  //       log_and_screen_printf("\nWalking branch node...\n");
+=======
+        //log_and_screen_printf("\nWalking branch node...\n");
+>>>>>>> master
         // Look at all paths out from here
         orientation = forward;
         int i;
@@ -677,7 +684,7 @@ void find_subgraph_stats(dBGraph * graph, char* consensus_contigs_filename, int 
             }
 
             // Grow graph from this node, returning the 'best' (highest coverage) node to store as seed point
-            log_printf("Growing graph from node\n");
+            log_printf("\nGrowing graph from node");
             graph_queue->number_of_items = 0;
 
             timestamp_gs();
