@@ -133,8 +133,12 @@ void clear_list(dBGraph* graph)
 {
     TopItem* current = start;
     TopItem* past = 0;
+    char* seq = calloc(256, 1);
 
     while(current != 0) {
+      binary_kmer_to_seq(&(current->ptr->kmer), graph->kmer_size, seq);
+      log_printf("%s\n", seq);
+
       cleaning_prune_db_node(current->ptr, graph);
       past = current;
       current = current->next;
@@ -592,7 +596,7 @@ void find_subgraph_stats(dBGraph * graph, char* consensus_contigs_filename, int 
 
 
       if ((all_edges>2) && (all_edges<=max_node_edges)){
-        log_and_screen_printf("\nWalking branch node...\n");
+ //       log_and_screen_printf("\nWalking branch node...\n");
         // Look at all paths out from here
         orientation = forward;
         int i;
@@ -677,7 +681,7 @@ void find_subgraph_stats(dBGraph * graph, char* consensus_contigs_filename, int 
             graph_queue->number_of_items = 0;
 
             timestamp_gs();
-            log_and_screen_printf("\n");
+            log_printf("\n");
 
             // now with a subgraph, walk the graph counting degrees by graph
             grow_graph_from_node_stats(node, &seed_node, graph, graph_queue, nodes_in_graph, delta_coverage);

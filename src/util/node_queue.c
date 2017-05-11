@@ -80,15 +80,16 @@ void* queue_push(Queue* q, void* item)
 void* queue_pop(Queue* q)
 {
     void* item = 0;
-	int i;
+	//int i;
 	
 	if (q->number_of_items > 0) {
-		item = q->items[0];
+		//item = q->items[0];
         
-		for (i=1; i<q->number_of_items; i++) {
-			q->items[i-1] = q->items[i];
-		}
+		//for (i=1; i<q->number_of_items; i++) {
+		//	q->items[i-1] = q->items[i];
+		//}
 		
+		item = q->items[q->number_of_items-1];
 		q->number_of_items--;
 	}
     
